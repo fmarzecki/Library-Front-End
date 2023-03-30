@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const BooksTable = () => {
+export const BooksTable = (props) => {
   const books = [
     { title: 'The Catcher in the Rye', author: 'J.D. Salinger', available: true },
     { title: 'To Kill a Mockingbird', author: 'Harper Lee', available: false },
@@ -9,7 +9,7 @@ export const BooksTable = () => {
     { title: 'Pride and Prejudice', author: 'Jane Austen', available: false }
   ];
 
-  const url = 'http://localhost:8080/test';
+  const url = 'http://localhost:8080/test/admin';
   const token = localStorage.getItem('token');
 
   useEffect( () => {
@@ -36,6 +36,7 @@ export const BooksTable = () => {
             <th>Title</th>
             <th>Author</th>
             <th>Available</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -43,7 +44,8 @@ export const BooksTable = () => {
             <tr key={index}>
               <td>{book.title}</td>
               <td>{book.author}</td>
-              <td>{book.available ? 'Yes' : 'No'}</td>
+              <td > {book.available ? 'Yes' : 'No'}</td>
+              <td><button class='btn btn-primary'> borrow </button></td>
             </tr>
           ))}
         </tbody>
