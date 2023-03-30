@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import {LoginForm} from './components/LoginForm'
+import {BooksTable} from './components/BooksTable'
+import {RegisterForm} from './components/RegisterForm'
+
 
 function App() {
+  const [authorized, setAuthorized] = useState(false);
+  const [registerForm, setRegisterForm] = useState(false);
+  const [loginForm, setLoginForm] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      { loginForm &&
+      <LoginForm 
+      setRegister={setRegisterForm} 
+      setAuthorized={setAuthorized}
+      setLogin={setLoginForm}
+      />}
+
+
+      { registerForm &&
+      <RegisterForm  
+      setRegister={setRegisterForm}
+      setLogin={setLoginForm}
+      />}
+
+      {authorized &&
+      <BooksTable />
+      }
     </div>
   );
 }
