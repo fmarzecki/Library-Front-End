@@ -45,7 +45,7 @@ export const BooksTable = (props) => {
               <td>{book.title}</td>
               <td>{book.author}</td>
               <td > {book.available ? 'Yes' : 'No'}</td>
-              <td><button class='btn btn-primary'> borrow </button></td>
+              <td><button className='btn btn-primary'> borrow </button></td>
             </tr>
           ))}
         </tbody>

@@ -38,8 +38,13 @@ export const RegisterForm = (props) => {
   };
 
   const handleFormChange = () => { 
-    props.setRegister(false);
-    props.setLogin(true);
+    props.setComponents((prev) => {
+      return {
+        ...prev,
+        loginForm : true,
+        registerForm: false
+      }
+    })
   }
 
   return (

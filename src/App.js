@@ -20,34 +20,38 @@ function App() {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      setAuthorized(true);
-      setLoginForm(false);
+      setComponents((prev) => {
+        return {
+          ...prev,
+          // loginForm : false,
+          // authorized: true
+        }
+      })
     })
     .catch(error => console.error(error));
   },[])
 
 
-  const [authorized, setAuthorized] = useState(false);
-  const [registerForm, setRegisterForm] = useState(false);
-  const [loginForm, setLoginForm] = useState(true);
+  const [components, setComponents] = useState( {
+      loginForm : true,
+      registerForm: false,
+      authorized: false
+  });
 
   return (
     <div>
-      { loginForm &&
+      { components.loginForm &&
       <LoginForm 
-      setRegister={setRegisterForm} 
-      setAuthorized={setAuthorized}
-      setLogin={setLoginForm}
+      setComponents={setComponents}
       />}
 
 
-      { registerForm &&
+      {components.registerForm &&
       <RegisterForm  
-      setRegister={setRegisterForm}
-      setLogin={setLoginForm}
+      setComponents={setComponents}
       />}
 
-      {authorized &&
+      {components.authorized &&
       <BooksTable />
       }
     </div>

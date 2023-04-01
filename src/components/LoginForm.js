@@ -21,19 +21,30 @@ export function LoginForm(props) {
     })
     .then(response => response.json())
     .then(data => {
-      // Save token in local storage
+
       console.log(data);
       localStorage.setItem('token', data.token);
-      props.setLogin(false);
-      props.setAuthorized(true);
+      
+      props.setComponents((prev) => {
+        return {
+          ...prev,
+          loginForm : false,
+          authorized: true
+        }
+      })
+
     })
     .catch(error => console.error(error));
-
   };
 
   const handleFormChange = () => { 
-    props.setRegister(true);
-    props.setLogin(false);
+    props.setComponents((prev) => {
+      return {
+        ...prev,
+        loginForm : false,
+        registerForm: true
+      }
+    })
   }
 
   return (
