@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Outlet, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const RegisterForm = (props) => {
+const RegisterForm = (props) => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -29,7 +30,6 @@ export const RegisterForm = (props) => {
        .then((response) => response.json())
        .then((data) => {
           console.log(data);
-          // Handle data
        })
        .catch((err) => {
           console.log(err.message);
@@ -37,15 +37,6 @@ export const RegisterForm = (props) => {
 
   };
 
-  const handleFormChange = () => { 
-    props.setComponents((prev) => {
-      return {
-        ...prev,
-        loginForm : true,
-        registerForm: false
-      }
-    })
-  }
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
@@ -108,10 +99,11 @@ export const RegisterForm = (props) => {
         <button type="submit" className="btn btn-primary mt-2">Submit</button>
 
         <div className="mt-3">
-          <p> <b>Click to <a onClick={handleFormChange} href="#">sign in</a> </b> </p>
+          <p><b> Click to <Link to="/">register </Link> </b></p>
         </div>
-
       </form>
     </div>
   );
 };
+
+export default RegisterForm;

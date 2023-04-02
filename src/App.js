@@ -1,8 +1,9 @@
 import { useState, useEffect} from 'react';
 import './App.css';
-import {LoginForm} from './components/LoginForm'
-import {BooksTable} from './components/BooksTable'
-import {RegisterForm} from './components/RegisterForm'
+import LoginForm from './components/LoginForm'
+import BooksTable from './components/BooksTable'
+import RegisterForm from './components/RegisterForm'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
 function App() {
@@ -20,41 +21,20 @@ function App() {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      setComponents((prev) => {
-        return {
-          ...prev,
-          // loginForm : false,
-          // authorized: true
-        }
-      })
+      // przekieruj do /books
     })
     .catch(error => console.error(error));
   },[])
 
 
-  const [components, setComponents] = useState( {
-      loginForm : true,
-      registerForm: false,
-      authorized: false
-  });
-
   return (
-    <div>
-      { components.loginForm &&
-      <LoginForm 
-      setComponents={setComponents}
-      />}
-
-
-      {components.registerForm &&
-      <RegisterForm  
-      setComponents={setComponents}
-      />}
-
-      {components.authorized &&
-      <BooksTable />
-      }
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/"  element={<LoginForm />} />
+        <Route path="/books"   element={<BooksTable />} />
+        <Route path="/register"   element={<RegisterForm />} />
+      </Routes>
+    </BrowserRouter>
   );
 
   
