@@ -99,7 +99,7 @@ const RegisterForm = (props) => {
         <button type="submit" className="btn btn-primary mt-2">Submit</button>
 
         <div className="mt-3">
-          <p><b> Click to <Link to="/">register </Link> </b></p>
+          <p><b> Click to <Link to="/"> login </Link> </b></p>
         </div>
       </form>
     </div>
