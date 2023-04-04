@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, } from 'react';
+import {useNavigate} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
   export const BooksTable = (props) => {
     const [books, setBooks] = useState([]);
-  
+
     const url = 'http://localhost:8080/books';
     const token = localStorage.getItem('token');
-  
+
+    const navigate = useNavigate();
+
     useEffect(() => {
       fetch(url, {
         method: 'GET',
@@ -19,8 +22,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
         console.log(data);
         setBooks(data);
       })
-      .catch(error => console.error(error));
-    }, [token]);
+      .catch((err) => {
+        console.log(err.message);
+        navigate("/");
+     });;
+      
+    }, []);
   
     if (books.length === 0) {
       return <div>Loading...</div>
@@ -43,7 +50,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
               <tr key={book.id}>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
-                <td > {book.available ? 'Yes' : 'No'}</td>
+                <td > <center>{book.available}</center></td>
                 <td><button disabled={book.available <= 0} className='btn btn-primary'> borrow </button></td>
               </tr>
             ))}

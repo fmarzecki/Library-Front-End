@@ -1,34 +1,18 @@
 import { useState, useEffect} from 'react';
 import './App.css';
-import LoginForm from './components/LoginForm'
-import BooksTable from './components/BooksTable'
-import RegisterForm from './components/RegisterForm'
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import LoginForm from './components/authenticate/LoginForm'
+import BooksTable from './components/book/BooksTable'
+import RegisterForm from './components/authenticate/RegisterForm'
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import NavigationPanel from './components/navigation/NavigationPanel';
 
 
 function App() {
 
-  const url = 'http://localhost:8080/test/admin';
-  const token = localStorage.getItem('token');
-
-  useEffect( () => {
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      // przekieruj do /books
-    })
-    .catch(error => console.error(error));
-  },[])
-
-
   return (
+    
     <BrowserRouter>
+    <NavigationPanel />
       <Routes>
         <Route exact path="/"  element={<LoginForm />} />
         <Route path="/books"   element={<BooksTable />} />
