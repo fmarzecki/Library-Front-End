@@ -6,6 +6,7 @@ import LoanTable from './components/loan/LoanTable'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from './components/navigation/NavBar';
 
+export const url = "http://192.168.1.211:8080/" ;
 
 function App() {
 

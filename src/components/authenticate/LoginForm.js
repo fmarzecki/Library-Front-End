@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import LoginErrorPrompt from "../error/LoginErrorPrompt"
+import LoginErrorPrompt from "../error/LoginErrorPrompt";
+import { url } from "../../App";
 
 const LoginForm = (props) => {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
 
-  const url = "http://localhost:8080/api/v1/auth/authenticate"; // replace with your API endpoint
   const data = { email, password };
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const LoginForm = (props) => {
     console.log(data); 
     event.preventDefault();
 
-    fetch(url, {
+    fetch(url+"api/v1/auth/authenticate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

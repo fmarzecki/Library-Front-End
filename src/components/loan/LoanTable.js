@@ -1,16 +1,16 @@
 import React, {useEffect, useState, } from 'react';
 import {useNavigate} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { url } from '../../App';
 
   export const LoanTable = (props) => {
     const [loans, setloans] = useState([]);
 
-    const url = 'http://localhost:8080/loans';
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
     useEffect(() => {
-      fetch(url, {
+      fetch(url +'loans', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`

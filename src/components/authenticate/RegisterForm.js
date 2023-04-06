@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import {Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { url } from "../../App";
 
 const RegisterForm = (props) => {
   const [formData, setFormData] = useState({
@@ -11,16 +12,15 @@ const RegisterForm = (props) => {
   });
 
   const { firstname, lastname, email, password } = formData;
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    alert('clicked');
     e.preventDefault();
 
-    fetch('http://localhost:8080/api/v1/auth/register', {
+    fetch(url +'api/v1/auth/register', {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {
@@ -30,13 +30,13 @@ const RegisterForm = (props) => {
        .then((response) => response.json())
        .then((data) => {
           console.log(data);
+          navigate("/");
        })
        .catch((err) => {
         console.log('Error:', err.message);
       });
 
   };
-
 
   return (
     <div className="container d-flex justify-content-center py-5 my-5">

@@ -2,19 +2,20 @@ import React, {useEffect, useState, } from 'react';
 import {useNavigate} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TextInput from "./SearchInput";
+import { url } from '../../App';
 
   export const BooksTable = (props) => {
+
     const [books, setBooks] = useState([]);
     const [filter, setFilter] = useState("");
     const [filteredBooks, setFilteredBooks] = useState([]);
     const navigate = useNavigate();
 
-    const url = 'http://localhost:8080/books';
     const token = localStorage.getItem('token');
 
     useEffect(() => {
       if (books.length === 0) {
-        fetch(url, {
+        fetch(url+"books", {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -31,9 +32,7 @@ import TextInput from "./SearchInput";
           navigate("/");
       });
     }
-
       loadFilter();
-
     }, [filter]);
   
     function loadFilter () {
@@ -55,19 +54,20 @@ import TextInput from "./SearchInput";
     }
 
     const handleClick = ({target}) => {
-      alert(target.id);
-      
-      fetch(url, {
-        method: 'GET',
+
+      fetch(url +'loans', {
+        method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id: target.id})
       })
+
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        setBooks(data);
-        setFilteredBooks(data);
+        navigate("/loans")
       })
       .catch((err) => {
         console.log(err.message);
