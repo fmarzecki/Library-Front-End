@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RegisterForm = (props) => {
@@ -32,16 +32,16 @@ const RegisterForm = (props) => {
           console.log(data);
        })
        .catch((err) => {
-          console.log(err.message);
-       });
+        console.log('Error:', err.message);
+      });
 
   };
 
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
+    <div className="container d-flex justify-content-center py-5 my-5">
       <form onSubmit={handleSubmit} className="border p-5 rounded">
-        <h3 className="mb-4">Login Form</h3>
+        <h3 className="mb-4">Register:</h3>
 
         <div className="form-group">
           <label>Username:</label>
