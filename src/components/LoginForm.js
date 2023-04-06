@@ -29,8 +29,8 @@ export function LoginForm(props) {
       navigate("/books");
     })
     .catch(error => console.error(error));
-  };
 
+  };
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
