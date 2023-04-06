@@ -1,24 +1,28 @@
-import { useState, useEffect} from 'react';
 import './App.css';
 import LoginForm from './components/authenticate/LoginForm'
-import BooksTable from './components/book/BooksTable'
 import RegisterForm from './components/authenticate/RegisterForm'
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import NavigationPanel from './components/navigation/NavigationPanel';
+import BooksTable from './components/book/BooksTable'
+import LoanTable from './components/loan/LoanTable'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from './components/navigation/NavBar';
 
 
 function App() {
 
   return (
-    
-    <BrowserRouter>
-    <NavigationPanel />
-      <Routes>
-        <Route exact path="/"  element={<LoginForm />} />
-        <Route path="/books"   element={<BooksTable />} />
-        <Route path="/register"   element={<RegisterForm />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="container">
+      <BrowserRouter>
+      {/* <NavigationPanel /> */}
+      <NavBar/>
+        <Routes>
+          <Route exact path="/"  element={<LoginForm />} />
+          <Route path="/books"   element={<BooksTable />} />
+          <Route path="/loans"   element={<LoanTable />} />
+          <Route path="/register"   element={<RegisterForm />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+
   );
 
   

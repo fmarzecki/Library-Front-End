@@ -53,7 +53,7 @@ const LoginForm = (props) => {
       });
   };
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
+    <div className="container d-flex justify-content-center py-5 my-5">
       <form onSubmit={handleSubmit} className="border p-5 rounded">
         <h3 className="mb-4">Login !</h3>
 
