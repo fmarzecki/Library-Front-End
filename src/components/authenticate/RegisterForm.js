@@ -20,7 +20,7 @@ const RegisterForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    fetch(url +'api/v1/auth/register', {
+    fetch(url+'api/v1/auth/register', {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {

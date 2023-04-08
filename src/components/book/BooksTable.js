@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TextInput from "./SearchInput";
 import { url } from '../../App';
+import AddBook from './AddBook';
 
   export const BooksTable = (props) => {
 
@@ -54,25 +55,26 @@ import { url } from '../../App';
     }
 
     const handleClick = ({target}) => {
-
-      fetch(url +'loans', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({id: target.id})
-      })
-
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        navigate("/loans")
-      })
-      .catch((err) => {
-        console.log(err.message);
-    });
-
+      fetch(url+'loans', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({id: target.id})
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+        .then(data => {
+          navigate("/loans")
+        })
+        .catch((err) => {
+          alert("Book already borrowed");
+      });
     }
 
     return (
@@ -88,6 +90,7 @@ import { url } from '../../App';
             </tr>
           </thead>
           <tbody>
+            <AddBook /> 
             {filteredBooks.map((book) => (
               <tr key={book.id}>
                 <td>{book.title}</td>

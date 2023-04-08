@@ -23,7 +23,7 @@ const LoginForm = (props) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        navigate("/books");
+        // navigate("/books");
       })
       .catch((err) => {
         console.log('Error:', err.message);
@@ -52,10 +52,11 @@ const LoginForm = (props) => {
         setLoginError(true);
       });
   };
+  
   return (
     <div className="container d-flex justify-content-center py-5 my-5">
       <form onSubmit={handleSubmit} className="border p-5 rounded">
-        <h3 className="mb-4">Login !</h3>
+        <h3 className="mb-4">Log in!</h3>
 
         <div className="form-group">
           <label htmlFor="email">email:</label>

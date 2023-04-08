@@ -10,7 +10,7 @@ import { url } from '../../App';
     const navigate = useNavigate();
 
     useEffect(() => {
-      fetch(url +'loans', {
+      fetch(url+'loans', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -32,7 +32,7 @@ import { url } from '../../App';
     if (loading) {
       return (
         <div className="container text-center">
-          <h1> </h1>
+          <h1> loading...</h1>
         </div>
       )
     }
