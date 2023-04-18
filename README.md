@@ -17,7 +17,7 @@ To run the application locally, you will need to have Node installed on your mac
 
 `git clone https://github.com/fmarzecki/Library-Front-End.git`
 
-2. Build and run the application using the following commands:
+2. Build and run the application using the following commands: 
 
 `npm install`
 
