@@ -44,12 +44,7 @@ password : test123
 
 - See your loans
 
-![loans](https://i.postimg.cc/7YTbD9Zw/Loan-Screen.png)
-
 - Search for a book
-
-![loans](https://i.postimg.cc/DZvkpv88/book-Added.png)
 
 - See your account details
 
-![loans](https://i.postimg.cc/ZKkvW2gC/my-Account.png)
