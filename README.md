@@ -40,8 +40,6 @@ password : test123
 
 - Get available books and order one
 
-![books](https://i.postimg.cc/0j46nH5H/books.png)
-
 - See your loans
 
 - Search for a book
